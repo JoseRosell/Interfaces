@@ -31,6 +31,7 @@ public class Controlador {
     private CirculoNegro blackCircle;
     private Rombo rombo;
     private Cuadrado cuadrado;
+    private Linea linea;
     @FXML
     public void initialize() {
 
@@ -56,6 +57,20 @@ public class Controlador {
             cuadrado = new Cuadrado(event.getSceneX(), event.getSceneY());
             panelAP.getChildren().addAll(cuadrado.getCuadrado(), cuadrado.getLabel());
         });
+
+        btRaya.setOnMousePressed((MouseEvent event) -> {
+            panelAP.setOnMousePressed((MouseEvent event1) -> {
+                orgSceneX = event1.getSceneX();
+                orgSceneY = event1.getSceneY();
+            });
+            panelAP.setOnMousePressed((MouseEvent event2) -> {
+                orgTranslateX = event2.getSceneX();
+                orgTranslateY = event2.getSceneY();
+            });
+            linea = new Linea(orgSceneX, orgSceneY, orgTranslateX, orgTranslateY);
+            panelAP.getChildren().add(linea.getLinea());
+        });
+
 
         /////ON MOUSE DRAGGED///////
         btCirculo.setOnMouseDragged((MouseEvent event) -> {
