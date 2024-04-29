@@ -19,18 +19,19 @@ public class Cuadrado {
         this.cuadrado.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
         this.cuadrado.setLayoutX(x);
         this.cuadrado.setLayoutY(y);
+        label.setMouseTransparent(true);
     }
 
     public void setPosicion(double x, double y) {
-        this.label.translateXProperty().bind(this.cuadrado.translateXProperty());
-        this.label.translateYProperty().bind(this.cuadrado.translateYProperty());
+        this.label.translateXProperty().bind(this.cuadrado.translateXProperty().add(4));
+        this.label.translateYProperty().bind(this.cuadrado.translateYProperty().add(8));
         this.cuadrado.setLayoutX(x);
         this.cuadrado.setLayoutY(y);
     }
 
     public void setTexto(String texto) {
         this.label.setText(texto);
-        this.cuadrado.setWidth(label.getText().length()*8);
+        this.cuadrado.setWidth(this.label.getText().length()*8);
     }
 
     public Rectangle getCuadrado() {

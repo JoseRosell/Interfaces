@@ -39,57 +39,36 @@ public class Controlador {
 
         /////ON MOUSE PRESSED///////
         btCirculo.setOnMousePressed((MouseEvent event) -> {
-            circle = new Circulo(20, event.getSceneX(), event.getSceneY());
+            circle = new Circulo(20,100,100);
             panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
+            circle.setPosicion(100,100);
+
         });
 
         btCirculoNegro.setOnMousePressed((MouseEvent event) -> {
-            blackCircle = new CirculoNegro(20, event.getSceneX(), event.getSceneY());
+            blackCircle = new CirculoNegro(20,100,100);
             panelAP.getChildren().addAll(blackCircle.getCirculo(), blackCircle.getLabel());
+            blackCircle.setPosicion(100,100);
         });
 
         btRombo.setOnMousePressed((MouseEvent event) -> {
-            rombo = new Rombo(event.getSceneX(), event.getSceneY());
+            rombo = new Rombo(100,100);
             panelAP.getChildren().addAll(rombo.getRombo(), rombo.getLabel());
+            rombo.setPosicion(100,100);
         });
 
         btCuadrado.setOnMousePressed((MouseEvent event) -> {
-            cuadrado = new Cuadrado(event.getSceneX(), event.getSceneY());
+            cuadrado = new Cuadrado(100,100);
             panelAP.getChildren().addAll(cuadrado.getCuadrado(), cuadrado.getLabel());
-        });
-
-        btRaya.setOnMousePressed((MouseEvent event) -> {
-            panelAP.setOnMousePressed((MouseEvent event1) -> {
-                orgSceneX = event1.getSceneX();
-                orgSceneY = event1.getSceneY();
-            });
-            panelAP.setOnMousePressed((MouseEvent event2) -> {
-                orgTranslateX = event2.getSceneX();
-                orgTranslateY = event2.getSceneY();
-            });
-            linea = new Linea(orgSceneX, orgSceneY, orgTranslateX, orgTranslateY);
-            panelAP.getChildren().add(linea.getLinea());
-        });
-        btRaya.setOnMousePressed((MouseEvent event) -> {
-            if (event.getButton() == MouseButton.PRIMARY) {
-                if (event.getClickCount() == 1) {
-                    orgSceneX = event.getSceneX();
-                    orgSceneY = event.getSceneY();
-                } else if (event.getClickCount() == 2) {
-                    orgTranslateX = event.getSceneX();
-                    orgTranslateY = event.getSceneY();
-
-                    linea = new Linea(orgSceneX, orgSceneY, orgTranslateX, orgTranslateY);
-
-                    panelAP.getChildren().add(linea.getLinea());
-                }
-            }
+            cuadrado.setPosicion(100,100);
         });
 
 
         /////ON MOUSE DRAGGED///////
         btCirculo.setOnMouseDragged((MouseEvent event) -> {
-            circle.setPosicion(event.getSceneX(), event.getSceneY());
+            if(event.getButton() == MouseButton.PRIMARY) {
+                circle.setPosicion(event.getSceneX(), event.getSceneY());
+            }
         });
 
         btCirculoNegro.setOnMouseDragged((MouseEvent event) -> {
