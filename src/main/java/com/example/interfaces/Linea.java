@@ -8,7 +8,7 @@ import javafx.scene.shape.Path;
 
 public class Linea {
     private LineTo inicio;
-    private MoveTo fin;
+    private LineTo fin;
     private Path linea;
 
     public Linea() {
@@ -17,7 +17,7 @@ public class Linea {
     public Linea(double x, double y, double x2, double y2) {
             this.linea = new Path();
             this.inicio = new LineTo(x,y);
-            this.fin = new MoveTo(x2,y2);
+            this.fin = new LineTo(x2,y2);
             this.linea.getElements().add(this.inicio);
             this.linea.getElements().add(this.fin);
             this.linea.setStrokeWidth(2);

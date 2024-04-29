@@ -2,8 +2,10 @@ package com.example.interfaces;//package com.example.interfaces;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 
@@ -37,8 +39,6 @@ public class Controlador {
 
         /////ON MOUSE PRESSED///////
         btCirculo.setOnMousePressed((MouseEvent event) -> {
-            // Crear un circulo cuando detecta el evento
-            // Y ponerlo en la posición del mouse
             circle = new Circulo(20, event.getSceneX(), event.getSceneY());
             panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
         });
@@ -69,6 +69,21 @@ public class Controlador {
             });
             linea = new Linea(orgSceneX, orgSceneY, orgTranslateX, orgTranslateY);
             panelAP.getChildren().add(linea.getLinea());
+        });
+        btRaya.setOnMousePressed((MouseEvent event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                if (event.getClickCount() == 1) {
+                    orgSceneX = event.getSceneX();
+                    orgSceneY = event.getSceneY();
+                } else if (event.getClickCount() == 2) {
+                    orgTranslateX = event.getSceneX();
+                    orgTranslateY = event.getSceneY();
+
+                    linea = new Linea(orgSceneX, orgSceneY, orgTranslateX, orgTranslateY);
+
+                    panelAP.getChildren().add(linea.getLinea());
+                }
+            }
         });
 
 
@@ -112,13 +127,6 @@ public class Controlador {
             String texto = JOptionPane.showInputDialog("Introduce el texto que desea introducir");
             cuadrado.setTexto(texto);
         });
-
-
-        /////ON MOUSE DOUBLE CLICK///////
-
-
-
-
 
     }
 }
