@@ -17,16 +17,11 @@ public class Controlador {
     double orgTranslateX, orgTranslateY;
 
 
-    @FXML
-    private Button btCirculo ;
-    @FXML
-    private Button btCirculoNegro;
+
     @FXML
     private Button btCuadrado;
     @FXML
     private Button btRombo;
-    @FXML
-    private Button btRaya;
     @FXML
     private AnchorPane panelAP;
 
@@ -40,18 +35,6 @@ public class Controlador {
     public void initialize() {
 
         /////ON MOUSE PRESSED///////
-//        btCirculo.setOnMousePressed((MouseEvent event) -> {
-//            circle = new Circulo(20,100,100);
-//            panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
-//            circle.setPosicion(100,100);
-//
-//        });
-
-//        btCirculoNegro.setOnMousePressed((MouseEvent event) -> {
-//            blackCircle = new CirculoNegro(20,100,100);
-//            panelAP.getChildren().addAll(blackCircle.getCirculo(), blackCircle.getLabel());
-//            blackCircle.setPosicion(100,100);
-//        });
 
         btRombo.setOnMousePressed((MouseEvent event) -> {
             rombo = new Rombo();
@@ -66,15 +49,6 @@ public class Controlador {
         });
 
         /////ON MOUSE DRAGGED///////
-        btCirculo.setOnMouseDragged((MouseEvent event) -> {
-            if(event.getButton() == MouseButton.PRIMARY) {
-                circle.setPosicion(event.getSceneX(), event.getSceneY());
-            }
-        });
-
-        btCirculoNegro.setOnMouseDragged((MouseEvent event) -> {
-            blackCircle.setPosicion(event.getSceneX(), event.getSceneY());
-        });
 
         btRombo.setOnMouseDragged((MouseEvent event) -> {
             rombo.setPosicion(event.getSceneX(), event.getSceneY());
@@ -84,18 +58,8 @@ public class Controlador {
             cuadrado.setPosicion(event.getSceneX(), event.getSceneY());
         });
 
-        /////ON MOUSE RELEASED///////
-        btCirculo.setOnMouseReleased((MouseEvent event) -> {
-            // Preguntar por el texto
-            String texto = JOptionPane.showInputDialog("Introduce el texto que desea introducir");
-            // Poner el texto en el circulo
-            circle.setTexto(texto);
-        });
 
-        btCirculoNegro.setOnMouseReleased((MouseEvent event) -> {
-            String texto = JOptionPane.showInputDialog("Introduce el nombr de la Clave Primaria");
-            blackCircle.setTexto(texto);
-        });
+        /////ON MOUSE RELEASED///////
 
         btRombo.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el nombre de la relacción");
@@ -116,6 +80,7 @@ public class Controlador {
                     blackCircle.setTexto(texto2);
                     linea = new Line();
                     panelAP.getChildren().add(linea);
+                    linea.setViewOrder(1);
                     linea.startXProperty().bind(cuadrado.getCuadrado().layoutXProperty().add(cuadrado.getCuadrado().widthProperty().divide(2)));
                     linea.startYProperty().bind(cuadrado.getCuadrado().layoutYProperty().add(cuadrado.getCuadrado().heightProperty().divide(2)));
                     linea.endXProperty().bind(blackCircle.getCirculo().layoutXProperty().add(blackCircle.getCirculo().centerXProperty()));
@@ -132,6 +97,7 @@ public class Controlador {
                     circle.setTexto(texto2);
                     linea = new Line();
                     panelAP.getChildren().add(linea);
+                    linea.setViewOrder(1);
                     linea.startXProperty().bind(cuadrado.getCuadrado().layoutXProperty().add(cuadrado.getCuadrado().widthProperty().divide(2)));
                     linea.startYProperty().bind(cuadrado.getCuadrado().layoutYProperty().add(cuadrado.getCuadrado().heightProperty().divide(2)));
                     linea.endXProperty().bind(circle.getCirculo().layoutXProperty().add(circle.getCirculo().centerXProperty()));

@@ -11,11 +11,9 @@
 <top>
     <ToolBar BorderPane.alignment="CENTER">
         <items>
-            <Button fx:id="btCirculoNegro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Circulo Negro" />
-            <Button fx:id="btCirculo" alignment="CENTER" mnemonicParsing="false" text="Circulo" />
-            <Button fx:id="btCuadrado" alignment="CENTER" mnemonicParsing="false" text="Cuadrado" />
-            <Button fx:id="btRombo" alignment="CENTER" mnemonicParsing="false" text="Rombo" />
-            <Button fx:id="btRaya" alignment="CENTER" mnemonicParsing="false" text="Raya" />
+            <Button fx:id="btCuadrado" alignment="CENTER" mnemonicParsing="false" text="Elemento" />
+            <Button fx:id="btRombo" alignment="CENTER" mnemonicParsing="false" text="Relacción" />
+            <Button fx:id="btRaya" alignment="CENTER" mnemonicParsing="false" text="Unir"  />
         </items>
         <cursor>
             <Cursor fx:constant="DEFAULT" />
