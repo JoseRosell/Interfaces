@@ -8,16 +8,13 @@ public class CirculoNegro {
     private Circle circulo;
     private Label label;
 
-    public CirculoNegro(int radio, double x, double y) {
+    public CirculoNegro(int radio) {
         this.circulo = new Circle(radio);
         this.label = new Label();
-        Arrastreador.makeArrastrable(this.circulo);
         Bindings.bindBidirectional(this.label.layoutXProperty(), this.circulo.layoutXProperty());
         Bindings.bindBidirectional(this.label.layoutYProperty(), this.circulo.layoutYProperty());
         this.circulo.setFill(javafx.scene.paint.Color.rgb(0,0,0));
-        this.circulo.setCenterX(x);
-        this.circulo.setCenterY(y);
-
+        Arrastreador.makeArrastrable(this.circulo);
     }
 
     public void setPosicion(double x, double y) {
@@ -36,6 +33,12 @@ public class CirculoNegro {
     }
     public Node getLabel() {
         return this.label;
+    }
+    public double getX() {
+        return this.circulo.getCenterX();
+    }
+    public double getY() {
+        return this.circulo.getCenterY();
     }
 
 }

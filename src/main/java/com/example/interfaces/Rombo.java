@@ -10,7 +10,7 @@ public class Rombo {
     private Rectangle rectangulo;
     private Label label;
 
-    public Rombo(double x, double y) {
+    public Rombo() {
         this.rectangulo = new Rectangle(30,30);
         rectangulo.setRotate(45);
         this.label = new Label();
@@ -18,8 +18,6 @@ public class Rombo {
         Bindings.bindBidirectional(this.label.layoutXProperty(), this.rectangulo.layoutXProperty());
         Bindings.bindBidirectional(this.label.layoutYProperty(), this.rectangulo.layoutYProperty());
         this.rectangulo.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
-        this.rectangulo.setLayoutX(x);
-        this.rectangulo.setLayoutY(y);
     }
 
     public void setPosicion(double x, double y) {

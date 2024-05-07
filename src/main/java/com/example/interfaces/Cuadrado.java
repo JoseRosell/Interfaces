@@ -10,16 +10,14 @@ public class Cuadrado {
     private Rectangle cuadrado;
     private Label label;
 
-    public Cuadrado(double x, double y) {
+    public Cuadrado() {
         this.label = new Label();
         this.cuadrado = new Rectangle(60,30);
-        Arrastreador.makeArrastrable(this.cuadrado);
         Bindings.bindBidirectional(this.label.layoutXProperty(), this.cuadrado.layoutXProperty());
         Bindings.bindBidirectional(this.label.layoutYProperty(), this.cuadrado.layoutYProperty());
         this.cuadrado.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
-        this.cuadrado.setLayoutX(x);
-        this.cuadrado.setLayoutY(y);
         label.setMouseTransparent(true);
+        Arrastreador.makeArrastrable(this.cuadrado);
     }
 
     public void setPosicion(double x, double y) {
@@ -40,6 +38,12 @@ public class Cuadrado {
 
     public Node getLabel() {
         return this.label;
+    }
+    public double getX() {
+        return this.cuadrado.getLayoutX();
+    }
+    public double getY() {
+        return this.cuadrado.getLayoutY();
     }
 
 }
