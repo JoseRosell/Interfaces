@@ -25,10 +25,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controlador {
 
-    double orgSceneX, orgSceneY;
-    double orgTranslateX, orgTranslateY;
-
-
     @FXML
     private Button btRaya;
     @FXML
@@ -38,13 +34,14 @@ public class Controlador {
     @FXML
     private AnchorPane panelAP;
 
-
     private Circulo circle;
     private CirculoNegro blackCircle;
     private Rombo rombo;
     private Cuadrado cuadrado;
     private Line linea;
-    private HashMap<Label, Node> figuras = new HashMap<Label, Node>();
+    private ArrayList<Object> figuras = new ArrayList<>();
+    private Object nodo1;
+    private Object nodo2;
 
     @FXML
     public void initialize() {
@@ -52,7 +49,7 @@ public class Controlador {
         /////ON MOUSE PRESSED///////
         btRombo.setOnMousePressed((MouseEvent event) -> {
             rombo = new Rombo();
-            panelAP.getChildren().addAll(rombo.getRombo(), rombo.getLabel());
+            panelAP.getChildren().addAll(rombo.getRombo(), rombo.getLabel1(), rombo.getLabelI(), rombo.getLabelD());
             rombo.setPosicion(100, 100);
         });
 
@@ -64,44 +61,64 @@ public class Controlador {
 
 
         btRaya.setOnMouseClicked((MouseEvent event) -> {
-            String relaccion = JOptionPane.showInputDialog("Introduce el nombre de la relacción, separado por comas. i.e. 1,1  1,N  N,M");
 
-            String figurakey[] =new String[figuras.size()];
+            String figurakey[] = new String[figuras.size()];
 
-            for (Label key : figuras.keySet()) {
-                figurakey[figuras.size()-1] = key.getText();
+            for(int i = 0; i < figuras.size(); i++){
+                if(figuras.get(i) instanceof Cuadrado){
+                    Cuadrado cuadrado = (Cuadrado) figuras.get(i);
+                    figurakey[i] = cuadrado.getLabel().getText();
+                }else if(figuras.get(i) instanceof Rombo){
+                    Rombo rombo = (Rombo) figuras.get(i);
+                    figurakey[i] = rombo.getLabel1().getText();
+                }
             }
 
+            String nodoNombre1 =  (String) JOptionPane.showInputDialog(null, "Selecciona el primer elemento", "Selecciona el primer elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[0]);
+            String nodoNombre2 =  (String) JOptionPane.showInputDialog(null, "Selecciona el segundo elemento", "Selecciona el segundo elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[1]);
 
-            Node nodo1 = (Node) JOptionPane.showInputDialog(null, "Selecciona el primer elemento", "Selecciona el primer elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[0]);
-            Node nodo2 = (Node) JOptionPane.showInputDialog(null, "Selecciona el segundo elemento", "Selecciona el segundo elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[0]);
+            // Esto tiene pinta de fumada, pero "funciona"
+            for(int i = 0; i < figuras.size(); i++){
+                if(figuras.get(i).getClass() == Cuadrado.class){
+                    Cuadrado cuadrado = (Cuadrado) figuras.get(i);
+                    if(cuadrado.getLabel().getText().equals(nodoNombre1)){
+                        nodo1 = figuras.get(i);
+                    }else if(cuadrado.getLabel().getText().equals(nodoNombre2)){
+                        nodo2 = figuras.get(i);
+                    }
+                }else if(figuras.get(i).getClass() == Rombo.class){
+                    Rombo rombo = (Rombo) figuras.get(i);
+                    if(rombo.getLabel1().getText().equals(nodoNombre1)){
+                        nodo1 = figuras.get(i);
+                    }else if(rombo.getLabel1().getText().equals(nodoNombre2)){
+                        nodo2 = figuras.get(i);
+                    }
+                }
+            }
+
+            Line linea = new Line();
+            panelAP.getChildren().add(linea);
+            linea.setViewOrder(1);
+            if (nodo1.getClass() == Cuadrado.class) {
+                Cuadrado cuadrado = (Cuadrado) nodo1;
+                linea.startXProperty().bind(cuadrado.getCuadrado().layoutXProperty().add(cuadrado.getCuadrado().widthProperty().divide(2)));
+                linea.startYProperty().bind(cuadrado.getCuadrado().layoutYProperty().add(cuadrado.getCuadrado().heightProperty().divide(2)));
+            } else if (nodo1.getClass() == Rombo.class){
+                Rombo rombo = (Rombo) nodo1;
+                linea.startXProperty().bind(rombo.getRombo().layoutXProperty().add(rombo.getRombo().widthProperty().divide(2)));
+                linea.startYProperty().bind(rombo.getRombo().layoutYProperty().add(rombo.getRombo().heightProperty().divide(2)));
+            }
+            if (nodo2.getClass() == Cuadrado.class){
+                Cuadrado cuadrado = (Cuadrado) nodo2;
+                linea.endXProperty().bind(cuadrado.getCuadrado().layoutXProperty().add(cuadrado.getCuadrado().widthProperty().divide(2)));
+                linea.endYProperty().bind(cuadrado.getCuadrado().layoutYProperty().add(cuadrado.getCuadrado().heightProperty().divide(2)));
+            } else if (nodo2.getClass() == Rombo.class){
+                Rombo rombo = (Rombo) nodo2;
+                linea.endXProperty().bind(rombo.getRombo().layoutXProperty().add(rombo.getRombo().widthProperty().divide(2)));
+                linea.endYProperty().bind(rombo.getRombo().layoutYProperty().add(rombo.getRombo().heightProperty().divide(2)));
+            }
 
         });
-
-//        panelAP.setOnMouseClicked((MouseEvent event1) -> {
-//            // Si es el primer nodo clickeado
-//            if (nodo1 == null) {
-//                if (event1.getSource() instanceof Rombo || event1.getSource() instanceof Cuadrado) {
-//                    nodo1 = (Node) event1.getSource();
-//                }
-//            } else if (event1.getSource() instanceof Rombo || event1.getSource() instanceof Cuadrado) {
-//                Node nodo2 = (Node) event1.getSource();
-//                // Verifica que los nodos sean diferentes
-//                if (!nodo2.equals(nodo1)) {
-//                    // Crea una nueva línea entre los dos nodos
-//                    Line linea = new Line();
-//                    linea.startXProperty().bind(nodo1.layoutXProperty());
-//                    linea.startYProperty().bind(nodo1.layoutYProperty());
-//                    linea.endXProperty().bind(nodo2.layoutXProperty());
-//                    linea.endYProperty().bind(nodo2.layoutYProperty());
-//                    panelAP.getChildren().add(linea);
-//                    linea.setViewOrder(1);
-//                    nodo1 = null;
-//                    panelAP.setOnMouseClicked(null);
-//                }
-//            }
-//        });
-
 
 
         /////ON MOUSE DRAGGED///////
@@ -110,24 +127,36 @@ public class Controlador {
         });
 
         btCuadrado.setOnMouseDragged((MouseEvent event) -> {
-            cuadrado.setPosicion(event.getSceneX() - cuadrado.getX(), event.getSceneY() - cuadrado.getY()); // todo
+            cuadrado.setPosicion(event.getSceneX(), event.getSceneY());
         });
-
 
         /////ON MOUSE RELEASED///////
 
         btRombo.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el nombre de la relacción");
-            rombo.setTexto(texto);
-            figuras.put(rombo.getLabel(), rombo.getRombo());
+            String relacciones[] = {"1,1","1,N","N,M","N,1"};
+
+            String relaccion = (String) JOptionPane.showInputDialog(null, "Selecciona tipo de la relacción", "Selecciona el tipo de la relacción", JOptionPane.QUESTION_MESSAGE, null, relacciones, relacciones[0]);
+
+            rombo.setTexto(texto, relaccion.split(",")[0], relaccion.split(",")[1]);
+            figuras.add(rombo);
         });
 
         btCuadrado.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el el nombre del elemento");
             cuadrado.setTexto(texto);
-            figuras.put(cuadrado.getLabel(), cuadrado.getCuadrado());
-
-            int pk = Integer.parseInt(JOptionPane.showInputDialog("Numero de claves primarias"));
+            figuras.add(cuadrado);
+            int pk = 0;
+            try {
+                pk = Integer.parseInt(JOptionPane.showInputDialog("Numero de claves primarias, al menos una", "1"));
+            }catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Debe haber al menos una clave primaria");
+                pk = 1;
+            }
+            if (pk <= 0){
+                JOptionPane.showMessageDialog(null, "Debe haber al menos una clave primaria");
+                pk = 1;
+            }
             if (pk >= 1) {
                 for (int i = pk; i > 0; i--) {
                     blackCircle = new CirculoNegro(20);
@@ -135,7 +164,6 @@ public class Controlador {
                     blackCircle.setPosicion(Math.random() * 500, Math.random() * 500);
                     String texto2 = JOptionPane.showInputDialog("Introduce el nombre de la clave primaria");
                     blackCircle.setTexto(texto2);
-                    figuras.put(blackCircle.getLabel(),blackCircle.getCirculo());
                     linea = new Line();
                     panelAP.getChildren().add(linea);
                     linea.setViewOrder(1);
@@ -145,8 +173,15 @@ public class Controlador {
                     linea.endYProperty().bind(blackCircle.getCirculo().layoutYProperty().add(blackCircle.getCirculo().centerYProperty()));
                 }
             }
-
-            int par = Integer.parseInt(JOptionPane.showInputDialog("Numero de atributos"));
+            int par;
+            try {
+                par = Integer.parseInt(JOptionPane.showInputDialog("Numero de atributos"));
+            }catch (NumberFormatException e){
+                par = 0;
+            }
+            if (par < 0){
+                par = 0;
+            }
             if (par >= 1) {
                 for (int i = par; i > 0; i--) {
                     circle = new Circulo(20);
@@ -164,7 +199,5 @@ public class Controlador {
                 }
             }
         });
-
     }
-
 }
