@@ -3,6 +3,7 @@ package com.example.interfaces;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -15,7 +16,9 @@ public class Cuadrado {
         this.cuadrado = new Rectangle(60,30);
         Bindings.bindBidirectional(this.label.layoutXProperty(), this.cuadrado.layoutXProperty());
         Bindings.bindBidirectional(this.label.layoutYProperty(), this.cuadrado.layoutYProperty());
-        this.cuadrado.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
+        this.cuadrado.setFill(Color.WHITE);
+        this.cuadrado.setStroke(Color.BLACK);
+        this.cuadrado.setStrokeWidth(1);
         label.setMouseTransparent(true);
         Arrastreador.makeArrastrable(this.cuadrado);
     }

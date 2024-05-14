@@ -4,6 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Circulo {
@@ -15,7 +16,9 @@ public class Circulo {
         this.label = new Label();
         Bindings.bindBidirectional(this.label.layoutXProperty(), this.circulo.layoutXProperty());
         Bindings.bindBidirectional(this.label.layoutYProperty(), this.circulo.layoutYProperty());
-        this.circulo.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
+        this.circulo.setStroke(Color.BLACK);
+        this.circulo.setFill(Color.WHITE);
+        this.circulo.setStrokeWidth(1);
         Arrastreador.makeArrastrable(this.circulo);
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -17,6 +18,7 @@ public class Rombo {
     private Label label;
     private Label labeli;
     private Label labeld;
+    private Circulo circle;
 
 
 
@@ -33,7 +35,9 @@ public class Rombo {
         Bindings.bindBidirectional(this.labeli.layoutYProperty(), this.rectangulo.layoutYProperty());
         Bindings.bindBidirectional(this.labeld.layoutXProperty(), this.rectangulo.layoutXProperty());
         Bindings.bindBidirectional(this.labeld.layoutYProperty(), this.rectangulo.layoutYProperty());
-        this.rectangulo.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
+        this.rectangulo.setFill(Color.WHITE);
+        this.rectangulo.setStroke(Color.BLACK);
+        this.rectangulo.setStrokeWidth(1);
 
         this.rectangulo.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
@@ -45,23 +49,17 @@ public class Rombo {
                 }
                 for (int i = cantidad; i > 0; i--) {
                     String texto = JOptionPane.showInputDialog("Introduzca el nombre del atributo " + i);
-                    Circle circle = new Circle(20);
-                    Label label = new Label();
-                    label.setText(texto);
-                    Arrastreador.makeArrastrable(circle);
-                    Bindings.bindBidirectional(label.layoutXProperty(), circle.layoutXProperty());
-                    Bindings.bindBidirectional(label.layoutYProperty(), circle.layoutYProperty());
-                    circle.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
-                    panelAP.getChildren().addAll(circle, label);
-                    circle.setLayoutX(rectangulo.getLayoutX() + 50);
-                    circle.setLayoutY(rectangulo.getLayoutY() + 50);
+                    circle = new Circulo(20);
+                    panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
+                    circle.setPosicion(Math.random() * 500, Math.random() * 500);
+                    circle.setTexto(texto);
                     Line linea = new Line();
                     panelAP.getChildren().add(linea);
                     linea.setViewOrder(1);
-                    linea.startXProperty().bind(rectangulo.layoutXProperty().add(rectangulo.widthProperty().divide(2)));
-                    linea.startYProperty().bind(rectangulo.layoutYProperty().add(rectangulo.heightProperty().divide(2)));
-                    linea.endXProperty().bind(circle.layoutXProperty().add(circle.centerXProperty()));
-                    linea.endYProperty().bind(circle.layoutYProperty().add(circle.centerYProperty()));
+                    linea.startXProperty().bind(this.rectangulo.layoutXProperty().add(this.rectangulo.widthProperty().divide(2)));
+                    linea.startYProperty().bind(this.rectangulo.layoutYProperty().add(this.rectangulo.heightProperty().divide(2)));
+                    linea.endXProperty().bind(circle.getCirculo().layoutXProperty().add(circle.getCirculo().centerXProperty()));
+                    linea.endYProperty().bind(circle.getCirculo().layoutYProperty().add(circle.getCirculo().centerYProperty()));
                 }
             }
         });
