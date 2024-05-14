@@ -48,7 +48,7 @@ public class Controlador {
 
         /////ON MOUSE PRESSED///////
         btRombo.setOnMousePressed((MouseEvent event) -> {
-            rombo = new Rombo();
+            rombo = new Rombo(panelAP);
             panelAP.getChildren().addAll(rombo.getRombo(), rombo.getLabel1(), rombo.getLabelI(), rombo.getLabelD());
             rombo.setPosicion(100, 100);
         });
@@ -120,7 +120,6 @@ public class Controlador {
 
         });
 
-
         /////ON MOUSE DRAGGED///////
         btRombo.setOnMouseDragged((MouseEvent event) -> {
             rombo.setPosicion(event.getSceneX(), event.getSceneY());
@@ -140,6 +139,7 @@ public class Controlador {
 
             rombo.setTexto(texto, relaccion.split(",")[0], relaccion.split(",")[1]);
             figuras.add(rombo);
+
         });
 
         btCuadrado.setOnMouseReleased((MouseEvent event) -> {

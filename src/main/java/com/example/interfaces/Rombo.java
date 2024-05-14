@@ -3,8 +3,14 @@ package com.example.interfaces;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+
+import javax.swing.*;
 
 public class Rombo {
     private Rectangle rectangulo;
@@ -13,7 +19,8 @@ public class Rombo {
     private Label labeld;
 
 
-    public Rombo() {
+
+    public Rombo(AnchorPane panelAP) {
         this.rectangulo = new Rectangle(30,30);
         rectangulo.setRotate(45);
         this.label = new Label();
@@ -27,6 +34,37 @@ public class Rombo {
         Bindings.bindBidirectional(this.labeld.layoutXProperty(), this.rectangulo.layoutXProperty());
         Bindings.bindBidirectional(this.labeld.layoutYProperty(), this.rectangulo.layoutYProperty());
         this.rectangulo.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
+
+        this.rectangulo.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                int cantidad = 1;
+                try {
+                    cantidad = Integer.parseInt(JOptionPane.showInputDialog("Cantidad de atributos que desea introducir"));
+                }catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Introduzca un número");
+                }
+                for (int i = cantidad; i > 0; i--) {
+                    String texto = JOptionPane.showInputDialog("Introduzca el nombre del atributo " + i);
+                    Circle circle = new Circle(20);
+                    Label label = new Label();
+                    label.setText(texto);
+                    Arrastreador.makeArrastrable(circle);
+                    Bindings.bindBidirectional(label.layoutXProperty(), circle.layoutXProperty());
+                    Bindings.bindBidirectional(label.layoutYProperty(), circle.layoutYProperty());
+                    circle.setFill(javafx.scene.paint.Color.rgb(204, 196, 177));
+                    panelAP.getChildren().addAll(circle, label);
+                    circle.setLayoutX(rectangulo.getLayoutX() + 50);
+                    circle.setLayoutY(rectangulo.getLayoutY() + 50);
+                    Line linea = new Line();
+                    panelAP.getChildren().add(linea);
+                    linea.setViewOrder(1);
+                    linea.startXProperty().bind(rectangulo.layoutXProperty().add(rectangulo.widthProperty().divide(2)));
+                    linea.startYProperty().bind(rectangulo.layoutYProperty().add(rectangulo.heightProperty().divide(2)));
+                    linea.endXProperty().bind(circle.layoutXProperty().add(circle.centerXProperty()));
+                    linea.endYProperty().bind(circle.layoutYProperty().add(circle.centerYProperty()));
+                }
+            }
+        });
     }
 
     public void setPosicion(double x, double y) {
@@ -41,7 +79,6 @@ public class Rombo {
     }
 
     public void setTexto(String texto, String texto1, String texto2) {
-
         this.label.setText(texto);
         this.labeli.setText(texto1);
         this.labeld.setText(texto2);
@@ -50,7 +87,6 @@ public class Rombo {
     public Rectangle getRombo() {
         return this.rectangulo;
     }
-
     public Label getLabel1() {
         return this.label;
     }
