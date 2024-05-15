@@ -18,6 +18,8 @@ public class Controlador {
     private Button btRombo;
     @FXML
     private AnchorPane panelAP;
+    @FXML
+    private Button btInfo;
 
     private Circulo circle;
     private CirculoNegro blackCircle;
@@ -43,6 +45,18 @@ public class Controlador {
             panelAP.getChildren().addAll(cuadrado.getCuadrado(), cuadrado.getLabel());
             cuadrado.setPosicion(100, 100);
         });
+
+        btInfo.setOnMouseClicked((MouseEvent event) -> {
+            JOptionPane.showMessageDialog(null, "Para introducir un elemento y sus parametros" +
+                    " arrastre o haga click en el icono del cuadrado, se le pedirán el numero de claves primarias y sus nombres y atributos y sus nombres.\n" +
+
+                    "Para introducir una relación arrastre o haga click en el icono del rombo, si desea añadirle cualquier numero de atributos, debe hacer doble clic sobre la relacción deseada. \n" +
+
+                    "Para unir elementos y relacciones, haga click en el botón de la linea y de la lista selecciona los elementos que quieres relacionar.\n");
+        });
+
+
+
 
 
         btRaya.setOnMouseClicked((MouseEvent event) -> {
