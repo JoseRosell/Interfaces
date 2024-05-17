@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vista.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("Aplicación drag and drop");
+        primaryStage.setTitle("Diagramas de Entidad-Relación");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
