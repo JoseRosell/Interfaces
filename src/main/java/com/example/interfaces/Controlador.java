@@ -67,7 +67,7 @@ public class Controlador {
 
         btRombo.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el nombre de la relacción");
-            String relacciones[] = {"1","N/M"};
+            String relacciones[] = {"1","N"};
 
 
             String figurakey[] = new String[figuras.size()];
@@ -132,7 +132,7 @@ public class Controlador {
                 for (int i = pk; i > 0; i--) {
                     blackCircle = new CirculoNegro(5);
                     panelAP.getChildren().addAll(blackCircle.getCirculo(), blackCircle.getLabel());
-                    blackCircle.setPosicion(cuadrado.getCuadrado().getLayoutX(), cuadrado.getCuadrado().getLayoutY() + (30 * i));
+                    blackCircle.setPosicion(cuadrado.getCuadrado().getLayoutX(), cuadrado.getCuadrado().getLayoutY() + (45 * i));
                     String texto2 = JOptionPane.showInputDialog("Introduce el nombre de la clave primaria");
                     blackCircle.setTexto(texto2);
                     linea = new Line();
@@ -157,7 +157,7 @@ public class Controlador {
                 for (int i = par; i > 0; i--) {
                     circle = new Circulo(5);
                     panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
-                    circle.setPosicion((cuadrado.getCuadrado().getLayoutX()+50), cuadrado.getCuadrado().getLayoutY() + (30 * i));
+                    circle.setPosicion((cuadrado.getCuadrado().getLayoutX()+50), cuadrado.getCuadrado().getLayoutY() + (45 * i));
                     String texto2 = JOptionPane.showInputDialog("Introduce el nombre del atributo");
                     circle.setTexto(texto2);
                     linea = new Line();

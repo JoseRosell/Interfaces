@@ -48,7 +48,7 @@ public class Rombo {
                     String texto = JOptionPane.showInputDialog("Introduzca el nombre del atributo " + i);
                     circle = new Circulo(5);
                     panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
-                    circle.setPosicion(this.rectangulo.getLayoutX(), (this.rectangulo.getLayoutY() + (30 * i)));
+                    circle.setPosicion(this.rectangulo.getLayoutX(), (this.rectangulo.getLayoutY() + (40 * i)));
                     circle.setTexto(texto);
                     Line linea = new Line();
                     panelAP.getChildren().add(linea);
