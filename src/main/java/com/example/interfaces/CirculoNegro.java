@@ -18,8 +18,8 @@ public class CirculoNegro {
     }
 
     public void setPosicion(double x, double y) {
-        this.label.translateXProperty().bind(this.circulo.centerXProperty().add(20));
-        this.label.translateYProperty().bind(this.circulo.centerYProperty().subtract(20));
+        this.label.translateXProperty().bind(this.circulo.centerXProperty().add(10));
+        this.label.translateYProperty().bind(this.circulo.centerYProperty());
         this.circulo.setCenterX(x);
         this.circulo.setCenterY(y);
     }

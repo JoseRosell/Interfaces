@@ -158,9 +158,9 @@ public class Controlador {
             }
             if (pk >= 1) {
                 for (int i = pk; i > 0; i--) {
-                    blackCircle = new CirculoNegro(20);
+                    blackCircle = new CirculoNegro(5);
                     panelAP.getChildren().addAll(blackCircle.getCirculo(), blackCircle.getLabel());
-                    blackCircle.setPosicion(Math.random() * 500, Math.random() * 500);
+                    blackCircle.setPosicion(cuadrado.getCuadrado().getLayoutX(), cuadrado.getCuadrado().getLayoutY() + (30 * i));
                     String texto2 = JOptionPane.showInputDialog("Introduce el nombre de la clave primaria");
                     blackCircle.setTexto(texto2);
                     linea = new Line();
@@ -183,9 +183,9 @@ public class Controlador {
             }
             if (par >= 1) {
                 for (int i = par; i > 0; i--) {
-                    circle = new Circulo(20);
+                    circle = new Circulo(5);
                     panelAP.getChildren().addAll(circle.getCirculo(), circle.getLabel());
-                    circle.setPosicion(Math.random() * 500, Math.random() * 500);
+                    circle.setPosicion((cuadrado.getCuadrado().getLayoutX()+50), cuadrado.getCuadrado().getLayoutY() + (30 * i));
                     String texto2 = JOptionPane.showInputDialog("Introduce el nombre del atributo");
                     circle.setTexto(texto2);
                     linea = new Line();

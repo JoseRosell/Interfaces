@@ -23,8 +23,8 @@ public class Circulo {
     }
 
     public void setPosicion(double x, double y) {
-        this.label.translateXProperty().bind(this.circulo.centerXProperty().add(20));
-        this.label.translateYProperty().bind(this.circulo.centerYProperty().subtract(20));
+        this.label.translateXProperty().bind(this.circulo.centerXProperty().add(10));
+        this.label.translateYProperty().bind(this.circulo.centerYProperty());
         this.circulo.setLayoutX(x);
         this.circulo.setLayoutY(y);
     }
