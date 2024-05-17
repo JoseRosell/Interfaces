@@ -29,13 +29,6 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btRaya" alignment="CENTER" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Raya.png" />
-                     </image></ImageView>
-               </graphic></Button>
             <Button fx:id="btInfo" alignment="CENTER" mnemonicParsing="false">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">

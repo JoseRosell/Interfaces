@@ -67,11 +67,8 @@ public class Controlador {
 
         btRombo.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el nombre de la relacción");
-            String relacciones[] = {"1,1", "1,N", "N,M", "N,1"};
+            String relacciones[] = {"1","N/M"};
 
-            String relaccion = (String) JOptionPane.showInputDialog(null, "Selecciona tipo de la relacción", "Selecciona el tipo de la relacción", JOptionPane.QUESTION_MESSAGE, null, relacciones, relacciones[0]);
-
-            rombo.setTexto(texto, relaccion.split(",")[0], relaccion.split(",")[1]);
 
             String figurakey[] = new String[figuras.size()];
 
@@ -81,7 +78,11 @@ public class Controlador {
             }
 
             String nodoNombre1 = (String) JOptionPane.showInputDialog(null, "Selecciona el primer elemento", "Selecciona el primer elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[0]);
+            String relaccion1 = (String) JOptionPane.showInputDialog(null, "Selecciona su cardinalidad", "Selecciona su cardinalidad", JOptionPane.QUESTION_MESSAGE, null, relacciones, relacciones[0]);
             String nodoNombre2 = (String) JOptionPane.showInputDialog(null, "Selecciona el segundo elemento", "Selecciona el segundo elemento", JOptionPane.QUESTION_MESSAGE, null, figurakey, figurakey[1]);
+            String relaccion2 = (String) JOptionPane.showInputDialog(null, "Selecciona su cardinalidad", "Selecciona su cardinalidad", JOptionPane.QUESTION_MESSAGE, null, relacciones, relacciones[0]);
+
+            rombo.setTexto(texto, relaccion1, relaccion2);
 
             // Esto tiene pinta de fumada, pero "funciona"
             for (int i = 0; i < figuras.size(); i++) {
@@ -100,18 +101,16 @@ public class Controlador {
 
             linea1.startXProperty().bind(((Cuadrado) nodo1).getCuadrado().layoutXProperty().add(((Cuadrado) nodo1).getCuadrado().widthProperty().divide(2)));
             linea1.startYProperty().bind(((Cuadrado) nodo1).getCuadrado().layoutYProperty().add(((Cuadrado) nodo1).getCuadrado().heightProperty().divide(2)));
-            linea1.endXProperty().bind(rombo.getRombo().layoutXProperty().subtract(rombo.getRombo().widthProperty().divide(2)));
+            linea1.endXProperty().bind(rombo.getRombo().layoutXProperty().subtract(6));
             linea1.endYProperty().bind(rombo.getRombo().layoutYProperty().add(rombo.getRombo().heightProperty().divide(2)));
 
             Line linea2 = new Line();
             panelAP.getChildren().add(linea2);
             linea2.setViewOrder(1);
-            linea2.startXProperty().bind(rombo.getRombo().layoutXProperty().subtract(rombo.getRombo().widthProperty().divide(2)));
+            linea2.startXProperty().bind(rombo.getRombo().layoutXProperty().add(31));
             linea2.startYProperty().bind(rombo.getRombo().layoutYProperty().add(rombo.getRombo().heightProperty().divide(2)));
             linea2.endXProperty().bind(((Cuadrado) nodo2).getCuadrado().layoutXProperty().add(((Cuadrado) nodo2).getCuadrado().widthProperty().divide(2)));
             linea2.endYProperty().bind(((Cuadrado) nodo2).getCuadrado().layoutYProperty().add(((Cuadrado) nodo2).getCuadrado().heightProperty().divide(2)));
-
-
         });
 
         btCuadrado.setOnMouseReleased((MouseEvent event) -> {

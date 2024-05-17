@@ -1,13 +1,10 @@
 package com.example.interfaces;
 
 import javafx.beans.binding.Bindings;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -23,7 +20,7 @@ public class Rombo {
 
 
     public Rombo(AnchorPane panelAP) {
-        this.rectangulo = new Rectangle(30,30);
+        this.rectangulo = new Rectangle(25,25);
         rectangulo.setRotate(45);
         this.label = new Label();
         this.labeli = new Label();
@@ -66,11 +63,11 @@ public class Rombo {
     }
 
     public void setPosicion(double x, double y) {
-        this.label.translateXProperty().bind(this.rectangulo.translateXProperty().add(20));
-        this.label.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(20));
-        this.labeli.translateXProperty().bind(this.rectangulo.translateXProperty().add(-20));
+        this.label.translateXProperty().bind(this.rectangulo.translateXProperty());
+        this.label.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(22));
+        this.labeli.translateXProperty().bind(this.rectangulo.translateXProperty().subtract(35));
         this.labeli.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(0));
-        this.labeld.translateXProperty().bind(this.rectangulo.translateXProperty().add(40));
+        this.labeld.translateXProperty().bind(this.rectangulo.translateXProperty().add(35));
         this.labeld.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(0));
         this.rectangulo.setLayoutX(x);
         this.rectangulo.setLayoutY(y);
