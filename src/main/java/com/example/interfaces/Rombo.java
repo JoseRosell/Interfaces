@@ -65,7 +65,7 @@ public class Rombo {
     public void setPosicion(double x, double y) {
         this.label.translateXProperty().bind(this.rectangulo.translateXProperty());
         this.label.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(22));
-        this.labeli.translateXProperty().bind(this.rectangulo.translateXProperty().subtract(35));
+        this.labeli.translateXProperty().bind(this.rectangulo.translateXProperty().subtract(17));
         this.labeli.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(0));
         this.labeld.translateXProperty().bind(this.rectangulo.translateXProperty().add(35));
         this.labeld.translateYProperty().bind(this.rectangulo.translateYProperty().subtract(0));
