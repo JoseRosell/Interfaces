@@ -27,19 +27,11 @@ public class CirculoNegro {
     public void setTexto(String texto) {
         this.label.setText(texto);
     }
-
     public Circle getCirculo() {
         return this.circulo;
     }
     public Label getLabel() {
         return this.label;
     }
-    public double getX() {
-        return this.circulo.getCenterX();
-    }
-    public double getY() {
-        return this.circulo.getCenterY();
-    }
-
 }
 

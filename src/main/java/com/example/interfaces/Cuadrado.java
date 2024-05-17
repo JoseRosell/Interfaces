@@ -42,13 +42,6 @@ public class Cuadrado {
     public Label getLabel() {
         return this.label;
     }
-    public double getX() {
-        return this.cuadrado.getLayoutX();
-    }
-    public double getY() {
-        return this.cuadrado.getLayoutY();
-    }
-
 }
 
 

@@ -94,7 +94,6 @@ public class Rombo {
     public Label getLabelD() {
         return this.labeld;
     }
-
 }
 
 
