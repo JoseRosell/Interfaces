@@ -8,8 +8,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class Cuadrado {
-    private Rectangle cuadrado;
-    private Label label;
+    private final Rectangle cuadrado;
+    private final Label label;
 
     public Cuadrado() {
         this.label = new Label();

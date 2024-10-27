@@ -5,8 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 
 public class CirculoNegro {
-    private Circle circulo;
-    private Label label;
+    private final Circle circulo;
+    private final Label label;
 
     public CirculoNegro(int radio) {
         this.circulo = new Circle(radio);

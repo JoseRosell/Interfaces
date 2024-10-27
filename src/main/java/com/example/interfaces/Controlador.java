@@ -24,7 +24,7 @@ public class Controlador {
     private Rombo rombo;
     private Cuadrado cuadrado;
     private Line linea;
-    private ArrayList<Object> figuras = new ArrayList<>();
+    private final ArrayList<Object> figuras = new ArrayList<>();
     private Object nodo1;
     private Object nodo2;
 
@@ -67,10 +67,10 @@ public class Controlador {
 
         btRombo.setOnMouseReleased((MouseEvent event) -> {
             String texto = JOptionPane.showInputDialog("Introduce el nombre de la relacción");
-            String relacciones[] = {"1","N"};
+            String[] relacciones = {"1","N"};
 
 
-            String figurakey[] = new String[figuras.size()];
+            String[] figurakey = new String[figuras.size()];
 
             for (int i = 0; i < figuras.size(); i++) {
                 Cuadrado cuadrado = (Cuadrado) figuras.get(i);

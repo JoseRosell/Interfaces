@@ -11,10 +11,10 @@ import javafx.scene.shape.Rectangle;
 import javax.swing.*;
 
 public class Rombo {
-    private Rectangle rectangulo;
-    private Label label;
-    private Label labeli;
-    private Label labeld;
+    private final Rectangle rectangulo;
+    private final Label label;
+    private final Label labeli;
+    private final Label labeld;
     private Circulo circle;
 
 
