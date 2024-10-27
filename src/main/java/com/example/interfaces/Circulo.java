@@ -8,8 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Circulo {
-    private Circle circulo;
-    private Label label;
+    private final Circle circulo;
+    private final Label label;
 
     public Circulo(int radio) {
         this.circulo = new Circle(radio);
